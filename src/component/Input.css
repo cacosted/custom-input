@@ -4,19 +4,18 @@
 }
 
 
-/* ############ Input Component */
+/* #################### Input Component ###################### */
 
-.Input-box {
 
-}
+/* ------------- Regular Input */
 
-.Input-label {
+.input__label {
     display: block;
     font-size: .75rem;
     margin-block-end: 0.25rem;
 }
 
-.Input-body {
+.input__body {
     outline: none;
     padding-block: 1.125rem;
     padding-inline-start: 0.75rem;
@@ -26,44 +25,44 @@
     font-weight: 600;
 }
 
-/* Hover default */
-.Input-box:hover .Input-label {
+/* Regular Hover */
+.input__box:hover .input__label {
     color: var(--main-text);
 } 
-.Input-box:hover .Input-body {
+
+.input__box:hover .input__body {
     border-color: var(--main-hover);
 } 
 
-
-/* ######### Utility */
-
-/* Focus default */
-.Input-label--focus { 
+/* Regular Focus */
+.input__label--focus { 
     color: var(--main-focus);
 }
 
-.Input-body--focus {
+.input__body--focus {
     border-color: var(--main-focus);
 } 
 
-/* Error */
-.Input-label--error { 
+
+/* ------------- Error Input */
+
+.input__label--error { 
     color: var(--main-error);
 }
 
-.Input-body--error {
+.input__body--error {
     border-color: var(--main-error);
 } 
 
-/* Disabled */
+/* ------------- Disabled Input */
 
-.Input-label--disabled {
+.input__label--disabled {
     display: block;
     font-size: .75rem;
     margin-block-end: 0.25rem;
 }
 
-.Input-body--disabled {
+.input__body--disabled {
     outline: none;
     padding-block: 1.125rem;
     padding-inline-start: 0.75rem;
@@ -75,7 +74,17 @@
 
     background-color: var(--main-disabled);
     border-color: var(--border-disabled);
+    cursor: not-allowed;
 }
+
+/* Disabled Hover */
+.input__box:hover .input__label--disabled {
+    color: inherit;
+} 
+
+.input__box:hover .input__body--disabled {
+    border-color: var(--border-disabled);
+} 
 
 /* Helper Text */
 .Input-helper {

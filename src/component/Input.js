@@ -1,21 +1,6 @@
 import "./Input.css";
 import React,{useState} from "react";
 
-// const setFocusColor = () => {
-//     const label = document.querySelectorAll('.Input-label');
-//     const input = document.querySelectorAll('.Input-body');
-
-//     // label.classList.add('Input-focus-text');
-//     // input.classList.add('Input-focus-border');
-// }
-
-// const removeFocusColor = () => {
-//     const label = document.querySelectorAll('.Input-label');
-//     const input = document.querySelectorAll('.Input-body');
-
-//     // label.classList.remove('Input-focus-text');
-//     // input.classList.remove('Input-focus-border');
-// }
 export default function Input({
     id, 
     error,
@@ -23,59 +8,91 @@ export default function Input({
     helperText,
     ...props
 }) {
-    const [isFocus, setFocus] = useState(false);
     
-    
-    const labelClass = `Input-label ${isFocus ? 'Input-label--focus' : ''}`;
-    const inputClass = `Input-body ${isFocus ? 'Input-body--focus' : ''}`;
-    
-    const errorLabel = `Input-label ${isFocus ? 'Input-label--error' : ''}`;
-    const errorInput = `Input-body ${isFocus ? 'Input-body--error' : ''}`;
-    
-    const disabledLabel = `Input-label--disabled`;
-    const disabledClass = `Input-body--disabled`;
+    let inputToRender;
 
-    const helperClass = `Input-helper${error ? '--error' : ''}`;
+    // Check which input will be rendered
+    if(error) {
+        inputToRender = <ErrorInput />;
+    }
+
+    else if(disabled) {
+        inputToRender = <DisabledInput />;
+    }
+
+    else {
+        inputToRender = <RegularInput />;
+    }
     return (
         
         <>
             <h2>{"<Input />"}</h2>
-            {
-            (error) ? 
-                <label htmlFor={id} className="Input-box">
-                    <span className="Input-label Input-label--error">Label</span>
-                    <input 
-                        id={id}
-                        className="Input-body Input-body--error" 
-                        placeholder="Placeholder" 
-
-                        onFocus={ ()=> setFocus(true) }
-                        onBlur={ ()=> setFocus(false) }
-
-                        {...props} 
-                    />
-                    <p className={helperClass}>{helperText}</p>
-
-                </label>
-                :
-                <label htmlFor={id} className="Input-box">
-                    <span className={ disabled ? disabledLabel : labelClass}>Label</span>
-                    <div className="Input-container">
-                        <span className="material-icons Input-icon">settings</span>
-                        <input 
-                            id={id}
-                            className={ disabled ? disabledClass : inputClass} 
-                            placeholder="Placeholder" 
-
-                            onFocus={ ()=> setFocus(true) }
-                            onBlur={ ()=> setFocus(false) }
-
-                            {...props} 
-                        />
-                    </div>
-                    <p className={helperClass}>{helperText}</p>
-                </label>
-            }
+            
+            {inputToRender}
         </>
     );
+}
+
+function RegularInput(focus) {
+    
+    const [isFocused,setFocus] = useState(false);
+
+    return (
+        <>
+            <label className="input__box">
+                <span 
+                    className={`input__label ${isFocused ? 'input__label--focus' : ''}`}
+                >Label</span>
+                <input 
+                    className={`input__body ${isFocused ? 'input__body--focus' : ''}`} 
+                    onFocus={ () => setFocus(true) }
+                    onBlur={ () => setFocus(false) }
+                    placeholder="Type here..." 
+                />
+            </label>
+
+        </>
+    )
+}
+
+function ErrorInput(focus) {
+    
+    const [isFocused,setFocus] = useState(false);
+
+    return (
+        <>
+            <label className="input__box">
+                <span 
+                    className={`input__label input__label--error ${isFocused ? 'input__label--focus' : ''}`}
+                >Label</span>
+                <input 
+                    className={`input__body input__body--error ${isFocused ? 'input__body--focus' : ''}`} 
+                    onFocus={ () => setFocus(true) }
+                    onBlur={ () => setFocus(false) }
+                    placeholder="Type here..." 
+                />
+            </label>
+
+        </>
+    )
+}
+
+function DisabledInput(focus) {
+    
+
+    return (
+        <>
+            <label className="input__box">
+                <span 
+                    className={`input__label input__label--disabled`}
+                >Label</span>
+                <input 
+                    className={`input__body input__body--disabled`} 
+                    placeholder="Type here..." 
+                    disabled
+                />
+            </label>
+
+        </>
+    )
 }
