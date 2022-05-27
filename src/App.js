@@ -6,8 +6,8 @@ export default function App() {
     <section className="App-container">
       <h1>Hello Input</h1>
       <Input />
-      <Input error/>
-      <Input />
+      <Input error helperText="This input has an error"/>
+      <Input disabled helperText="This input is disabled"/>
     </section>
   );
 }

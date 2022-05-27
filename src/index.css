@@ -3,10 +3,11 @@
   --main-text: #333333;
   --main-error:#D32F2F;
 
+  --main-disabled: #F2F2F2;
+  --border-disabled: #E0E0E0;
   /* Hover & Focus */
   --main-hover: #333333;
   --main-focus: #2962FF;
-  --error-hover: #D32F2F;
 }
 *,
 *::after,

@@ -19,16 +19,23 @@ import React,{useState} from "react";
 export default function Input({
     id, 
     error,
+    disabled,
+    helperText,
     ...props
 }) {
     const [isFocus, setFocus] = useState(false);
-
+    
+    
     const labelClass = `Input-label ${isFocus ? 'Input-label--focus' : ''}`;
     const inputClass = `Input-body ${isFocus ? 'Input-body--focus' : ''}`;
-
+    
     const errorLabel = `Input-label ${isFocus ? 'Input-label--error' : ''}`;
     const errorInput = `Input-body ${isFocus ? 'Input-body--error' : ''}`;
+    
+    const disabledLabel = `Input-label--disabled`;
+    const disabledClass = `Input-body--disabled`;
 
+    const helperClass = `Input-helper${error ? '--error' : ''}`;
     return (
         
         <>
@@ -47,20 +54,26 @@ export default function Input({
 
                         {...props} 
                     />
+                    <p className={helperClass}>{helperText}</p>
+
                 </label>
                 :
                 <label htmlFor={id} className="Input-box">
-                    <span className={labelClass}>Label</span>
-                    <input 
-                        id={id}
-                        className={inputClass} 
-                        placeholder="Placeholder" 
+                    <span className={ disabled ? disabledLabel : labelClass}>Label</span>
+                    <div className="Input-container">
+                        <span className="material-icons Input-icon">settings</span>
+                        <input 
+                            id={id}
+                            className={ disabled ? disabledClass : inputClass} 
+                            placeholder="Placeholder" 
 
-                        onFocus={ ()=> setFocus(true) }
-                        onBlur={ ()=> setFocus(false) }
+                            onFocus={ ()=> setFocus(true) }
+                            onBlur={ ()=> setFocus(false) }
 
-                        {...props} 
-                    />
+                            {...props} 
+                        />
+                    </div>
+                    <p className={helperClass}>{helperText}</p>
                 </label>
             }
         </>
