@@ -19,6 +19,7 @@
     outline: none;
     padding-block: 1.125rem;
     padding-inline-start: 0.75rem;
+    width: min(100%);
     border: 0.063rem solid var(--main-color);
     border-radius: .5rem;
 
@@ -86,11 +87,55 @@
     border-color: var(--border-disabled);
 } 
 
-/* Helper Text */
-.Input-helper {
+/* ------------- Helper Text */
+
+.input__helper {
     color: var(--main-color);
 }
 
-.Input-helper--error {
+.input__helper--error {
     color: var(--main-error);
+}
+
+/* ------------- Input Icons */
+
+.input__container {
+    position: relative;
+    width: 12.5rem;
+}
+
+.input__icon {
+    position: absolute;
+    top: 50%;
+    color: inherit;
+}
+
+.input__icon--start {
+    left: .45rem;
+}
+
+.input__icon--end {
+    right: .5rem;
+}
+
+.input__body--icon {
+    padding-inline-start: 2rem;
+}
+
+/* ------------- Input Sizes */
+
+/* Small */
+.input__body--small {
+    padding-block: .625rem;
+}
+
+/* FullWidth */
+.input__container--full {
+    width: 100%;
+}
+
+/* ------------- Input Multiline */
+
+.input_body--multiline {
+    resize: none;
 }

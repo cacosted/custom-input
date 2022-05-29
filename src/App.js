@@ -8,6 +8,10 @@ export default function App() {
       <Input />
       <Input error helperText="This input has an error"/>
       <Input disabled helperText="This input is disabled"/>
+      <Input startIcon="settings"/>
+      <Input endIcon="home"/>
+      <Input size="sm" multiline row="20"/>
+      <Input endIcon="home" size="md" fullWidth/>
     </section>
   );
 }
