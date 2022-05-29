@@ -3,6 +3,7 @@ import React,{useState} from "react";
 
 export default function Input({
     id, 
+    title,
     error,
     disabled,
     helperText,
@@ -12,9 +13,9 @@ export default function Input({
     fullWidth,
     multiline,
     row,
-    ...props
+    ...rester
 }) {
-    
+
     const generalClass = `
         input__body 
         ${ startIcon === undefined ? '' : 'input__body--icon'}
@@ -42,18 +43,22 @@ export default function Input({
     return (
         
         <>
-            <h2>{"<Input />"}</h2>
-            <div className={`input__container ${fullWidth ? 'input__container--full' : ''}`}>
-                <i className="input__icon input__icon--start material-icons">{startIcon}</i>
-                    { inputToRender }
-                <i className="input__icon input__icon--end material-icons">{endIcon}</i>
-            </div>
             
-            { 
-                helperText ? 
-                <p className={`input__helper ${error ? 'input__helper--error' : ''}`}>{helperText}</p> 
-                : ''
-            } 
+            <article className="input__container--full">
+                <h2 className="input__title">{title}</h2>
+                
+                <div className={`input__container ${fullWidth ? 'input__container--full' : ''}`}>
+                    <i className="input__icon input__icon--start material-icons">{startIcon}</i>
+                        { inputToRender }
+                    <i className="input__icon input__icon--end material-icons">{endIcon}</i>
+                </div>
+                    { 
+                        helperText ? 
+                        <p className={`input__helper ${error ? 'input__helper--error' : ''}`}>{helperText}</p> 
+                        : ''
+                    } 
+            </article>
+            
         </>
     );
 }
@@ -71,7 +76,7 @@ function RegularInput({general}) {
                     className={`${general} ${isFocused ? 'input__body--focus' : ''}`} 
                     onFocus={ () => setFocus(true) }
                     onBlur={ () => setFocus(false) }
-                    placeholder="Type here..." 
+                    placeholder="Placeholder"
                 />
             </label>
 
@@ -93,7 +98,7 @@ function ErrorInput({general}) {
                     className={`${general} input__body--error ${isFocused ? 'input__body--focus' : ''}`} 
                     onFocus={ () => setFocus(true) }
                     onBlur={ () => setFocus(false) }
-                    placeholder="Type here..." 
+                    placeholder="Placeholder" 
                 />
             </label>
 
@@ -112,7 +117,7 @@ function DisabledInput({general}) {
                 >Label</span>
                 <input 
                     className={`${general} input__body--disabled`} 
-                    placeholder="Type here..." 
+                    placeholder="Placeholder" 
                     disabled
                 />
             </label>
@@ -133,7 +138,7 @@ function MultiLineInput({general,row}) {
                 <textarea 
                     className={`${general} input_body--multiline`} 
                     rows={row}
-                    placeholder="Type here..." 
+                    placeholder="Placeholder" 
                 >
                 </textarea>
             </label>
